@@ -53,7 +53,7 @@ with app:
     with gr.Column():
         audio_out = gr.Audio(label="Output Audio")
         text_out = gr.Textbox(label="Output Text")
-        chunks_out = gr.Textbox(label="Output Chunks")
+        chunks_out = gr.Textbox(label="Output SRT")
     input_download_button.click(download_video, inputs=[input_text], outputs=[audio_out])
     input_transcribe_button.click(transcribe, inputs=[audio_out], outputs=[text_out, chunks_out])
   
