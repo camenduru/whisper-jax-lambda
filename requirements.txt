@@ -1,4 +1,6 @@
-jax[cuda]
+-f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+jax[cuda12_pip]
+flax
 git+https://github.com/camenduru/whisper-jax
 datasets
 soundfile
