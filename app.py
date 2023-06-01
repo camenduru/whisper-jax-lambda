@@ -16,9 +16,10 @@ def download_video(url):
     return f"/home/demo/source/audio.m4a"
 
 def transcribe(audio_in):
-    outputs = pipeline("/home/demo/source/audio.m4a")
+    outputs = pipeline("/home/demo/source/audio.m4a", return_timestamps=True)
     text = outputs["text"]
-    return text
+    chunks = outputs["chunks"]
+    return text, chunks
 
 app = gr.Blocks()
 with app:
@@ -31,7 +32,8 @@ with app:
     with gr.Column():
         audio_out = gr.Audio(label="Output Audio")
         text_out = gr.Textbox(label="Output Text")
+        chunks_out = gr.Textbox(label="Output Chunks")
     input_download_button.click(download_video, inputs=[input_text], outputs=[audio_out])
-    input_transcribe_button.click(transcribe, inputs=[audio_out], outputs=[text_out])
+    input_transcribe_button.click(transcribe, inputs=[audio_out], outputs=[text_out, chunks_out])
   
 app.launch()
