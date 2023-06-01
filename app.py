@@ -26,7 +26,7 @@ with app:
   with gr.Row():
     with gr.Column():
       input_text = gr.Textbox(show_label=False, value="https://www.youtube.com/watch?v=SN2sak8Tp70")
-      input_download_button = gr.Button(value="Download from YouTube or Twitch")
+      input_download_button = gr.Button(value="Download from YouTube")
       input_transcribe_button = gr.Button(value="Transcribe")
     with gr.Column():
         audio_out = gr.Audio(label="Output Audio")
