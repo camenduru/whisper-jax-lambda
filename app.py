@@ -22,6 +22,7 @@ def transcribe(audio_in):
 
 app = gr.Blocks()
 with app:
+  gr.Markdown('## openai/whisper-large-v2')
   with gr.Row():
     with gr.Column():
       input_text = gr.Textbox(show_label=False, value="https://www.youtube.com/watch?v=SN2sak8Tp70")
