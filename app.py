@@ -15,11 +15,32 @@ def download_video(url):
     ydl.download(url)
     return f"/home/demo/source/audio.m4a"
 
+# Copied from https://github.com/openai/whisper/blob/c09a7ae299c4c34c5839a76380ae407e7d785914/whisper/utils.py#L50
+def format_timestamp(seconds: float, always_include_hours: bool = False, decimal_marker: str = "."):
+    if seconds is not None:
+        milliseconds = round(seconds * 1000.0)
+        hours = milliseconds // 3_600_000
+        milliseconds -= hours * 3_600_000
+        minutes = milliseconds // 60_000
+        milliseconds -= minutes * 60_000
+        seconds = milliseconds // 1_000
+        milliseconds -= seconds * 1_000
+        hours_marker = f"{hours:02d}:" if always_include_hours or hours > 0 else ""
+        return f"{hours_marker}{minutes:02d}:{seconds:02d}{decimal_marker}{milliseconds:03d}"
+    else:
+        return seconds
+
 def transcribe(audio_in):
     outputs = pipeline("/home/demo/source/audio.m4a", return_timestamps=True)
     text = outputs["text"]
     chunks = outputs["chunks"]
-    return text, chunks
+    output = ""
+    # https://huggingface.co/spaces/jeffistyping/Youtube-Whisperer/blob/main/app.py modifyed
+    for i, chunk in enumerate(chunks):
+      output += f"{i+1}\n"
+      output += f"{format_timestamp(chunk['timestamp'][0])} --> {format_timestamp(chunk['timestamp'][1])}\n"
+      output += f"{chunk['text']}\n\n"
+    return text, output
 
 app = gr.Blocks()
 with app:
