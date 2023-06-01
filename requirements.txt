@@ -1,7 +1,7 @@
 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 jax[cuda11_pip]
 flax
-git+https://github.com/camenduru/whisper-jax
+git+https://github.com/camenduru/whisper-jax@dev
 datasets
 soundfile
 librosa
