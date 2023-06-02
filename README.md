@@ -36,6 +36,7 @@ from gradio_client import Client
 client = Client("https://demo.PAGE_ID.lambdaspaces.com/")
 
 video = client.predict("https://www.youtube.com/watch?v=SN2sak8Tp70", fn_index=0)
-text = client.predict(video,	fn_index=1)
+text, srt = client.predict(video,	fn_index=1)
 print(text)
+print(srt)
 ```
