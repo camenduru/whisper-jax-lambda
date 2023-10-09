@@ -11,6 +11,7 @@ app_file: app.py
 🥳 Please join my patreon community https://patreon.com/camenduru <br />
 
 ### Main Repo
+https://github.com/openai/whisper
 https://github.com/sanchit-gandhi/whisper-jax
 
 ### Model
